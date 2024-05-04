@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DSA_LeetCode\DSA_LeetCode.csproj" />
     <ProjectReference Include="..\DSA_Practices\DSA_LeetCode.csproj" />
   </ItemGroup>
 
