@@ -71,7 +71,7 @@ namespace DSA_Practices.DSA.Implementations
             if (index < 0 || index >= arr.Length)
                 throw new ArgumentOutOfRangeException("index");
 
-            int[] tempArray = new int[capacity--];
+            int[] tempArray = new int[capacity-1];
 
             for (int i = 0; i < tempArray.Length; i++)
             {

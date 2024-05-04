@@ -1,6 +1,6 @@
 ﻿namespace DSA_Practices.DSA.Interfaces
 {
-    internal interface IArray_Day1
+    public interface IArray_Day1
     {
         public int Size();
         public bool IsEmpty();

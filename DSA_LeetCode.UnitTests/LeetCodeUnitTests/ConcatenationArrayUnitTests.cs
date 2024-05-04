@@ -6,17 +6,17 @@ namespace DSA_LeetCode.UnitTests.LeetCodeUnitTests
     public class ConcatenationArrayUnitTests
     {
 
-        private readonly ConcatentationArray _concatenationArray;
+        ConcatentationArray concatenationArray = new ConcatentationArray();
 
         [Fact]
         public void ShouldConcatenateTwoArrays()
         {
             // Arrange
-            _concatenationArray.arr = SetupArray();
+            concatenationArray.arr = SetupArray();
             int[] expectedResults = { 1, 2, 1, 1, 2, 1 };
 
             // Act
-            int[] results = _concatenationArray.GetConcatenation(_concatenationArray.arr);
+            int[] results = concatenationArray.GetConcatenation(concatenationArray.arr);
 
             // Assert 
             Assert.Equal(6, results.Length);
