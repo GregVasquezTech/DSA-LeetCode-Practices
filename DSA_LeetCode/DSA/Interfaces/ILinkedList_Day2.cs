@@ -15,7 +15,6 @@
         public T PeekLast();
         public T RemoveFirst();
         public T RemoveLast();
-        public T Remove(LinkedListNode<T> node);
         public bool Remove(Object obj);
         public T RemoveAt(int index);
     }
