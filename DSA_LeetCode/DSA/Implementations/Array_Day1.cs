@@ -1,6 +1,6 @@
-﻿using DSA_Practices.DSA.Interfaces;
+﻿using DSA_LeetCode.DSA.Interfaces;
 
-namespace DSA_Practices.DSA.Implementations
+namespace DSA_LeetCode.DSA.Implementations
 {
     public class Array_Day1: IArray_Day1
     {

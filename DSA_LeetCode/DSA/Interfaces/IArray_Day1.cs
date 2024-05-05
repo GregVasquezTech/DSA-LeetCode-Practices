@@ -1,4 +1,4 @@
-﻿namespace DSA_Practices.DSA.Interfaces
+﻿namespace DSA_LeetCode.DSA.Interfaces
 {
     public interface IArray_Day1
     {

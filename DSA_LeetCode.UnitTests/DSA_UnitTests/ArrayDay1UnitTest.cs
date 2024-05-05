@@ -1,4 +1,4 @@
-﻿using DSA_Practices.DSA.Implementations;
+﻿using DSA_LeetCode.DSA.Implementations;
 
 namespace DSA_LeetCode.UnitTests.DSA_UnitTests
 {

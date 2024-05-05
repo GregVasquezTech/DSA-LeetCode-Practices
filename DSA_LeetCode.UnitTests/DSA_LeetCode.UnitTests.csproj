@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DSA_LeetCode\DSA_LeetCode.csproj" />
-    <ProjectReference Include="..\DSA_Practices\DSA_LeetCode.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +26,12 @@
 
   <ItemGroup>
     <Folder Include="DSA_UnitTests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DSA_LeetCode">
+      <HintPath>..\DSA_LeetCode\obj\Debug\net8.0\DSA_LeetCode.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
