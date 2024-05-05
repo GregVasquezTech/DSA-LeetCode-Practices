@@ -11,6 +11,13 @@ namespace DSA_LeetCode.LeetCode.Implementations
             int[] tempArray = new int[nums.Length];
 
             tempArray[0] = nums[0];
+
+            /*
+             * 0, 3, 1, 4, 2, 5
+             * we already assigned 0 so we start at index 1 in the for loop
+             * 
+             */
+
             for (int k = 1;  k < nums.Length; k++)
             {
                 if (k%2 == 1)
