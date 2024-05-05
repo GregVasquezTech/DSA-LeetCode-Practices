@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="DSA_LeetCode">
+      <HintPath>obj\Debug\net8.0\DSA_LeetCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 ﻿using DSA_LeetCode.DSA.Interfaces;
+using System.Net.Http.Headers;
 
 namespace DSA_LeetCode.DSA.Implementations
 {
@@ -41,6 +42,36 @@ namespace DSA_LeetCode.DSA.Implementations
         public int Size()
         {
             return size;
+        }
+        public int IndexOf(Object obj)
+        {
+            if(IsEmpty())
+                return -1;
+
+            int index = 0; 
+            LinkedListNode<T> node = head;
+
+            if(obj == null)
+            {
+                while(node != null)
+                {
+                    if (node.Data == null)
+                        return index;
+                    index++;
+                }
+            } else {
+                while (!obj.Equals(node.Data))
+                {
+                    if (obj.Equals(node.Data))
+                        return index;
+                    index++;
+                }
+            }
+            return -1;
+        }
+        public bool Contains(Object obj)
+        {
+            return IndexOf(obj) != -1;
         }
         public bool IsEmpty()
         {
@@ -88,17 +119,112 @@ namespace DSA_LeetCode.DSA.Implementations
                 throw new Exception("Empty list");
             return tail.Data;
         }
-        public void RemoveFirst(T element)
+        public T RemoveFirst()
         {
+            if (IsEmpty())
+                throw new Exception("Empty list");
+
+            T tempData = head.Data;
+            head = head.Next;
+            --size;
+
+            if (IsEmpty())
+                tail = null;
+            else
+                head.Prev = null;
+
+            return tempData;
 
         }
-        public void RemoveLast(T element)
+        public T RemoveLast()
         {
+            if (IsEmpty())
+                throw new Exception("Empty list");
 
+            T tempData = tail.Data;
+            tail = tail.Prev;
+            --size;
+
+            if (tail.Prev == null)
+            {
+                head = tail;
+                tail = null;
+            } else
+            {
+                tail.Next = null;
+            }
+            return tempData;
         }
-        public bool Remove(T element)
+        public T Remove(LinkedListNode<T> node)
         {
+            if (node.Prev == null)
+                RemoveFirst();
+            if (node.Next == null)
+                RemoveLast();
+
+            node.Next.Prev = node.Prev;
+            node.Prev.Next = node.Next;
+
+            T tempData = node.Data;
+
+            node.Data = default(T);
+            node = node.Next = node.Prev = null;
+
+            --size;
+
+            return tempData;
+        }
+        public bool Remove(Object obj)
+        {
+            if (IsEmpty())
+                throw new Exception("Empty List");
+
+            LinkedListNode<T> trav = head;
+
+            if(obj == null)
+            {
+                for (trav = head; trav != null; trav = trav.Next)
+                {
+                    if (trav.Data == null)
+                    {
+                        Remove(trav);
+                        return true;
+                    }
+                }
+            } else {
+                for (trav = head; trav != null; trav = trav.Next)
+                {
+                    if (obj.Equals(trav.Data)){
+                        Remove(trav);
+                        return true;
+                    }
+                }
+            }
             return false;
+        }
+        public T RemoveAt(int index)
+        {
+            if ((index < 0) || IsEmpty() || index >= Size())
+                throw new Exception("Out of bounds!");
+
+            LinkedListNode<T> trav;
+
+            if (index < size / 2)
+            {
+                trav = head;
+                for (int i = 0; i != index; i++)
+                {
+                    trav = trav.Next;
+                }
+            } else {
+                trav = tail;
+                for (int i = 0; i != index; i--)
+                {
+                    trav = trav.Prev;
+                }
+            }
+
+            return Remove(trav);
         }
     }
 }
