@@ -18,7 +18,7 @@ namespace DSA_LeetCode.DSA.Implementations
             for (int i = 0; i < arr.Length; i++)
             {
                 int j = i;
-                while (j > 0 && arr[j] < arr[j -1]) 
+                while (j > 0 && arr[j] < arr[j - 1]) 
                 {
                     (arr[j], arr[j - 1]) = (arr[j - 1], arr[j]);
                     j--;
@@ -35,14 +35,11 @@ namespace DSA_LeetCode.DSA.Implementations
 
             for (int i = 0; i < arr.Length; i++)
             {
-                int swapValue;
                 for (int j = i + 1; j < arr.Length; j++)
                 {
                     if (arr[j] < arr[i])
                     {
-                        swapValue = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = swapValue;
+                        (arr[j], arr[i]) = (arr[i], arr[j]);
                     }
                 }
             }
