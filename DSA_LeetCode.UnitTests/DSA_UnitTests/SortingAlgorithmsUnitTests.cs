@@ -7,33 +7,60 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         SortingAlgorithms sortingAlgorithms = new();
 
         [Fact]
-        public void ShouldSortArray_Using_InsertionSortAlgorithm()
+        public void ShouldSortArray_Using_InsertionSortingAlgorithm()
         {
             // Arrange
             int[] testArray = CreateArray();
-            int[] expected = new int[] { -42, -11 , 0, 1, 2, 45, 54, 98 };
+            int[] expecting = new int[] { -42, -11 , 0, 1, 2, 45, 54, 98 };
 
             // Act 
             sortingAlgorithms.InsertionSortingAlgorithm(testArray);
 
             // Assert
-            Assert.Equal(expected, testArray);
+            Assert.Equal(expecting, testArray);
         }
 
         [Fact]
-        public void ShouldSortArray_Using_SelectionSortAlgorithm()
+        public void ShouldSortArray_Using_SelectionSortingAlgorithm()
         {
             // Arrange
             int[] testArray = CreateArray();
-            int[] expected = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] expecting = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
 
             // Act
             sortingAlgorithms.SelectionSortingAlgorithm(testArray);
 
             // Assert
-            Assert.Equal(expected, testArray);
+            Assert.Equal(expecting, testArray);
         }
 
+        [Fact]
+        public void ShouldSortArray_Using_BubbleSortingAlgorithm()
+        {
+            // Arrange
+            int[] testArray = CreateArray();
+            int[] expecting = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+
+            // Act 
+            sortingAlgorithms.BubbleSortingAlgorithm(testArray);
+
+            // Assert
+            Assert.Equal(expecting, testArray);
+        }
+
+        [Fact]
+        public void ShouldSortArray_Using_MergeSortingAlgorithm()
+        {
+            // Arrange
+            int[] testArray = CreateArray();
+            int[] expecting = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+
+            // Act 
+            sortingAlgorithms.MergeSortingAlgorithm(testArray);
+
+            // Assert
+            Assert.Equal(expecting, testArray);
+        }
 
 
 
