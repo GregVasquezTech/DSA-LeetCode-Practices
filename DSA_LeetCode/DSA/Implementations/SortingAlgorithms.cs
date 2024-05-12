@@ -7,111 +7,101 @@ namespace DSA_LeetCode.DSA.Implementations
     {
         public SortingAlgorithms() { }
 
-        public void InsertionSortingAlgorithm(int[] a)
+        public void InsertionSortingAlgorithm(int[] arr)
         {
-            if (a.Length == 0 || a.Length == 1)
+            if (arr.Length < 2)
             {
                 PrintStatement();
+                return;
             }
-            else
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int i = 0; i < a.Length; i++)
+                int j = i;
+                while (j > 0 && arr[j] < arr[j -1]) 
                 {
-                    int j = i;
-                    while (j > 0 && a[j] < a[j -1]) 
+                    (arr[j], arr[j - 1]) = (arr[j - 1], arr[j]);
+                    j--;
+                }
+            }
+        }
+        public void SelectionSortingAlgorithm(int[] arr)
+        {
+            if (arr.Length < 2)
+            {
+                PrintStatement();
+                return;
+            }
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int swapValue;
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[j] < arr[i])
                     {
-                        (a[j], a[j - 1]) = (a[j - 1], a[j]);
-                        j--;
+                        swapValue = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = swapValue;
                     }
                 }
             }
         }
-        public void SelectionSortingAlgorithm(int[] a)
+        public void BubbleSortingAlgorithm(int[] arr)
         {
-            if (a.Length < 2)
+            if (arr.Length < 2)
             {
                 PrintStatement();
+                return;
             }
-            else
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int i = 0; i < a.Length; i++)
+                bool isAnyChanges = false; 
+                for (int j = 0; j < arr.Length - 1; j++)
                 {
-                    int swapValue;
-                    for (int j = i + 1; j < a.Length; j++)
+                    if (arr[j + 1] < arr[j])
                     {
-                        if (a[j] < a[i])
-                        {
-                            swapValue = a[i];
-                            a[i] = a[j];
-                            a[j] = swapValue;
-                        }
+                        (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
+                        isAnyChanges = true;
                     }
                 }
+                if (!isAnyChanges)
+                {
+                    break;
+                }
             }
+
         }
-        public void BubbleSortingAlgorithm(int[] a)
+        public void MergeSortingAlgorithm(int[] arr)
         {
-            if (a.Length < 2)
+            if (arr.Length < 2)
             {
-                PrintStatement();
+                return;
             }
-            else
-            {
-                for (int i = 0; i < a.Length; i++)
-                {
-                    bool isAnyChanges = false; 
-                    for (int j = 0; j < a.Length - 1; j++)
-                    {
-                        if (a[j + 1] < a[j])
-                        {
-                            (a[j], a[j + 1]) = (a[j + 1], a[j]);
-                            isAnyChanges = true;
-                        }
-                    }
-                    if (!isAnyChanges)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-        public void MergeSortingAlgorithm(int[] a)
-        {
-            if (a.Length < 2)
-            {
-                PrintStatement();
-            }
-            else
-            {
-                int m = a.Length / 2;
-                int i = 0, j = 0, k = 0;
 
-                int[] left = GetSubarray(a, 0, m);
-                int[] right = GetSubarray(a, m, a.Length - 1);
+            int middleLength = arr.Length / 2;
 
-                MergeSortingAlgorithm(left);
-                MergeSortingAlgorithm(right);
+            int[] leftArr = new int[middleLength];
+            int[] rightArr = new int[arr.Length - middleLength];
 
-                while (i < left.Length && j < right.Length)
+            int i = 0; // For left array
+            int j = 0; // For right array
+
+            for (; i < arr.Length; i++)
+            {
+                if ( i < middleLength )
                 {
-                    if (left[i] < right[j])
-                    {
-                        a[k] = left[i++];
-                    }else
-                    {
-                        a[k] = right[j++];
-                    }
-                    k++;
+                    leftArr[i] = arr[i];
                 }
-                while (i < left.Length)
+                else
                 {
-                    a[k++] = left[i++];
-                }
-                while (j < right.Length)
-                {
-                    a[k++] = right[j++];
+                    rightArr[j++] = arr[i];
                 }
             }
+            MergeSortingAlgorithm(leftArr);
+            MergeSortingAlgorithm(rightArr);
+            MergeArray(arr, leftArr, rightArr);
         }
 
 
@@ -120,11 +110,31 @@ namespace DSA_LeetCode.DSA.Implementations
         {
             Console.WriteLine("Process is not necessary");
         }
-        private int[] GetSubarray(int[] a, int startIndex, int endIndex)
+
+        private void MergeArray(int[] sortedArr, int[] leftArr, int[] rightArr)
         {
-            int[] result = new int[endIndex - startIndex + 1];
-            Array.Copy(a, startIndex, result, 0, result.Length);
-            return result;
+            // Indices
+            int s = 0, l = 0, r = 0; 
+
+            while (l < leftArr.Length && r < rightArr.Length)
+            {
+                if (leftArr[l] < rightArr[r])
+                {
+                    sortedArr[s++] = leftArr[l++];
+                }
+                else
+                {
+                     sortedArr[s++] = rightArr[r++];
+                }
+            }
+            while (l < leftArr.Length)
+            {
+                sortedArr[s++] = leftArr[l++];
+            }
+            while (r < rightArr.Length)
+            {
+                sortedArr[s++] = rightArr[r++];
+            }
         }
     }
 }

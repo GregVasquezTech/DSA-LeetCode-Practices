@@ -10,56 +10,56 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         public void ShouldSortArray_Using_InsertionSortingAlgorithm()
         {
             // Arrange
-            int[] testArray = CreateArray();
-            int[] expecting = new int[] { -42, -11 , 0, 1, 2, 45, 54, 98 };
+            int[] testArr = CreateArray();
+            int[] expectingArr = new int[] { -42, -11 , 0, 1, 2, 45, 54, 98 };
 
             // Act 
-            sortingAlgorithms.InsertionSortingAlgorithm(testArray);
+            sortingAlgorithms.InsertionSortingAlgorithm(testArr);
 
             // Assert
-            Assert.Equal(expecting, testArray);
+            Assert.Equal(expectingArr, testArr);
         }
 
         [Fact]
         public void ShouldSortArray_Using_SelectionSortingAlgorithm()
         {
             // Arrange
-            int[] testArray = CreateArray();
-            int[] expecting = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] testArr = CreateArray();
+            int[] expectingArr = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
 
             // Act
-            sortingAlgorithms.SelectionSortingAlgorithm(testArray);
+            sortingAlgorithms.SelectionSortingAlgorithm(testArr);
 
             // Assert
-            Assert.Equal(expecting, testArray);
+            Assert.Equal(expectingArr, testArr);
         }
 
         [Fact]
         public void ShouldSortArray_Using_BubbleSortingAlgorithm()
         {
             // Arrange
-            int[] testArray = CreateArray();
-            int[] expecting = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] testArr = CreateArray();
+            int[] expectingArr = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
 
             // Act 
-            sortingAlgorithms.BubbleSortingAlgorithm(testArray);
+            sortingAlgorithms.BubbleSortingAlgorithm(testArr);
 
             // Assert
-            Assert.Equal(expecting, testArray);
+            Assert.Equal(expectingArr, testArr);
         }
 
         [Fact]
         public void ShouldSortArray_Using_MergeSortingAlgorithm()
         {
             // Arrange
-            int[] testArray = CreateArray();
-            int[] expecting = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] testArr = CreateArray();
+            int[] expectingArr = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
 
             // Act 
-            sortingAlgorithms.MergeSortingAlgorithm(testArray);
+            sortingAlgorithms.MergeSortingAlgorithm(testArr);
 
             // Assert
-            Assert.Equal(expecting, testArray);
+            Assert.Equal(expectingArr, testArr);
         }
 
 
