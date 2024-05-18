@@ -11,7 +11,7 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         {
             // Arrange
             int[] testArr = CreateArray();
-            int[] expectingArr = new int[] { -42, -11 , 0, 1, 2, 45, 54, 98 };
+            int[] expectingArr = SortedArray();
 
             // Act 
             sortingAlgorithms.InsertionSortingAlgorithm(testArr);
@@ -25,7 +25,7 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         {
             // Arrange
             int[] testArr = CreateArray();
-            int[] expectingArr = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] expectingArr = SortedArray();
 
             // Act
             sortingAlgorithms.SelectionSortingAlgorithm(testArr);
@@ -39,7 +39,7 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         {
             // Arrange
             int[] testArr = CreateArray();
-            int[] expectingArr = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] expectingArr = SortedArray();
 
             // Act 
             sortingAlgorithms.BubbleSortingAlgorithm(testArr);
@@ -53,7 +53,7 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         {
             // Arrange
             int[] testArr = CreateArray();
-            int[] expectingArr = new int[] { -42, -11, 0, 1, 2, 45, 54, 98 };
+            int[] expectingArr = SortedArray();
 
             // Act 
             sortingAlgorithms.MergeSortingAlgorithm(testArr);
@@ -61,10 +61,20 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
             // Assert
             Assert.Equal(expectingArr, testArr);
         }
+        [Fact]
+        public void ShouldSortArray_Using_ShellSortAlgorithm()
+        {
+            // Arrange
+            int[] testArr = CreateArray();
+            int[] expectedArr = SortedArray();
 
+            // Act
+            sortingAlgorithms.ShellSortingAlgorithm(testArr);
 
-
-
+            // Assert
+            Console.WriteLine(expectedArr);
+            Assert.Equal(testArr, expectedArr);
+        }
 
 
        // Helper Functions
@@ -72,6 +82,12 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         private int[] CreateArray()
         {
             return new int[] { 1, -42, 2, -11, 0, 54, 45, 98 };
+        }
+        private int[] SortedArray()
+        {
+            int[] testArr = CreateArray();
+            Array.Sort(testArr);
+            return testArr;
         }
     }
 }

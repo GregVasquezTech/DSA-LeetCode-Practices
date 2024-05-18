@@ -100,6 +100,31 @@ namespace DSA_LeetCode.DSA.Implementations
             MergeSortingAlgorithm(rightArr);
             MergeArray(arr, leftArr, rightArr);
         }
+        public void ShellSortingAlgorithm(int[] arr)
+        {
+            if (arr.Length < 2)
+            {
+                PrintStatement();
+                return;
+            }
+            for (int gap = arr.Length / 2; gap > 0; gap /= 2)
+            {
+                for (int gapIndex = gap; gapIndex < arr.Length; gapIndex++)
+                {
+                    for (int startIndex = gapIndex - gap; startIndex >= 0; startIndex-=gap)
+                    {
+                        if (arr[startIndex + gap] > arr[startIndex])
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            (arr[startIndex + gap], arr[startIndex]) = (arr[startIndex], arr[startIndex + gap]);
+                        }
+                    }
+                }
+            }
+        }
 
 
         // Helper Functions

@@ -24,10 +24,4 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="DSA_LeetCode">
-      <HintPath>..\DSA_LeetCode\obj\Debug\net8.0\DSA_LeetCode.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
