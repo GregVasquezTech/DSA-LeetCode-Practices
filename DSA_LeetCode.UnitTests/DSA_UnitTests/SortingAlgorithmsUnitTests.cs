@@ -66,14 +66,28 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
         {
             // Arrange
             int[] testArr = CreateArray();
-            int[] expectedArr = SortedArray();
+            int[] expectingArr = SortedArray();
 
             // Act
             sortingAlgorithms.ShellSortingAlgorithm(testArr);
 
             // Assert
-            Console.WriteLine(expectedArr);
-            Assert.Equal(testArr, expectedArr);
+            Console.WriteLine(expectingArr);
+            Assert.Equal(expectingArr, testArr);
+        }
+
+        [Fact]
+        public void ShouldSortArray_Using_QuickSortAlgorithm()
+        {
+            // Arrange
+            int[] testArr = CreateArray();
+            int[] expectingArr = SortedArray();
+
+            // Act
+            sortingAlgorithms.QuickSortingAlgorithm(testArr, 0, testArr.Length - 1);
+
+            // Assert
+            Assert.Equal(expectingArr, testArr);
         }
 
 

@@ -7,5 +7,6 @@
         void BubbleSortingAlgorithm(int[] arr);
         void MergeSortingAlgorithm(int[] arr);
         void ShellSortingAlgorithm(int[] arr);
+        void QuickSortingAlgorithm(int[] arr, int start, int end);
     }
 }

@@ -125,6 +125,24 @@ namespace DSA_LeetCode.DSA.Implementations
                 }
             }
         }
+        public void QuickSortingAlgorithm(int[] arr, int start, int end)
+        {
+            if (arr.Length < 2)
+            {
+                Console.WriteLine("Out of bounds");
+                return;
+            }
+
+            if (end <= start)
+            {
+                return;
+            }
+
+            int pivot = PartitionQuickSortArray(arr, start, end);
+
+            QuickSortingAlgorithm(arr, start, pivot - 1);
+            QuickSortingAlgorithm(arr, pivot + 1, end);
+        }
 
 
         // Helper Functions
@@ -157,6 +175,26 @@ namespace DSA_LeetCode.DSA.Implementations
             {
                 sortedArr[s++] = rightArr[r++];
             }
+        }
+
+        private int PartitionQuickSortArray(int[] a, int start, int end)
+        {
+            int pivot = a[end];
+            int i = start - 1;
+
+            for (int j = start; j < end; j++)
+            {
+                if (a[j] < pivot)
+                {
+                    i++;
+                    (a[i], a[j]) = (a[j], a[i]);
+                }
+            }
+
+            i++;
+            (a[i], a[end]) = (a[end], a[i]);
+
+            return i;
         }
     }
 }

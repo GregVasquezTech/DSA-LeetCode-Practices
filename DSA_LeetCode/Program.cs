@@ -17,7 +17,7 @@ namespace DSA_LeetCode
             int[] expectedResult = ExpectedResult();
 
             // Act
-            ShellSort(testArr);
+            QuickSort(testArr, 0, testArr.Length - 1);
 
             // Assert
             
@@ -163,13 +163,63 @@ namespace DSA_LeetCode
             MergeSort(right);
             MergeArray(arr, left, right);
         }
+        private static void ShellSort(int[] arr)
+        {
+            if (arr.Length < 2)
+            {
+                Console.WriteLine("Out of bounds");
+                return;
+            }
+
+            for (int gap = arr.Length / 2; gap > 0; gap /= 2)
+            {
+                for (int j = gap; j < arr.Length; j++)
+                {
+                    for (int i = j - gap; i  >= 0; i -= gap)
+                    {
+                        if (arr[i + gap] > arr[i])
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            (arr[i], arr[i + gap]) = (arr[i + gap], arr[i]);
+                        }
+                    }
+                }
+            }
+        }
+        private static void QuickSort(int[] arr, int start, int end)
+        {
+            if (arr.Length < 2)
+            {
+                Console.WriteLine("Out of bounds");
+                return;
+            }
+
+            if (end <= start)
+            {
+                return;
+            }
+
+            int pivot = PartitionQuickSort(arr, start, end);
+
+            QuickSort(arr, start, pivot - 1);
+            QuickSort(arr, pivot + 1, end);
+        }
+
+
+
+
+
+        // Helper Functions
         private static void MergeArray(int[] sortArr, int[] leftArr, int[] rightArr)
         {
             int l = 0, r = 0, s = 0;
 
             while (l < leftArr.Length && r < rightArr.Length)
             {
-                if (leftArr[l] <= rightArr[r]) 
+                if (leftArr[l] <= rightArr[r])
                 {
                     sortArr[s++] = leftArr[l++];
                 }
@@ -187,30 +237,22 @@ namespace DSA_LeetCode
                 sortArr[s++] = rightArr[r++];
             }
         }
-        private static void ShellSort(int[] arr)
+        private static int PartitionQuickSort(int[] a, int start, int end)
         {
-            if (arr.Length == 0)
+            int pivot = a[end];
+            int i = start - 1;
+
+            for (int j = start; j < end; j++)
             {
-                Console.WriteLine("Out of bounds array");
-                return;
-            }
-            for (int h = arr.Length / 2; h > 0; h /= 2)
-            {
-                for (int i = h; i < arr.Length; i++)
+                if (a[j] < pivot)
                 {
-                    for (int j = i - h; j >= 0; j -= h)
-                    {
-                        if (arr[j + h] > arr[j])
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            (arr[j + h], arr[j]) = (arr[j], arr[j + h]);
-                        }
-                    }
+                    (a[++i], a[j]) = (a[j], a[i]);
                 }
             }
+
+            (a[++i], a[end]) = (a[end], a[i]);
+
+            return i;
         }
     }
 }
