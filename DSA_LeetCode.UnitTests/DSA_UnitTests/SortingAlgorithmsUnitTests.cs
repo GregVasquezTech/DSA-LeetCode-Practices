@@ -89,6 +89,19 @@ namespace DSA_LeetCode.UnitTests.DSA_UnitTests
             // Assert
             Assert.Equal(expectingArr, testArr);
         }
+        [Fact]
+        public void ShouldSortArray_Using_HeapSortAlgorithm()
+        {
+            // Arrange
+            int[] testArr = CreateArray();
+            int[] expectingArr = SortedArray();
+
+            // Act
+            sortingAlgorithms.HeapSortingAlgorithm(testArr);
+
+            // Assert
+            Assert.Equal(expectingArr, testArr);
+        }
 
 
        // Helper Functions

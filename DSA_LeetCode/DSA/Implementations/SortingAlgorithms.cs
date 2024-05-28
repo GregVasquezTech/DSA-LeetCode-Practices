@@ -143,6 +143,19 @@ namespace DSA_LeetCode.DSA.Implementations
             QuickSortingAlgorithm(arr, start, pivot - 1);
             QuickSortingAlgorithm(arr, pivot + 1, end);
         }
+        public void HeapSortingAlgorithm(int[] arr)
+        {
+            for (int i = arr.Length / 2 - 1; i >= 0; i--)
+            {
+                Heapify(arr, arr.Length, i);
+            }
+
+            for (int i = arr.Length -1; i > 0; i--)
+            {
+                (arr[0], arr[i]) = (arr[i], arr[0]);
+                Heapify(arr, i, 0);
+            }
+        }
 
 
         // Helper Functions
@@ -177,6 +190,22 @@ namespace DSA_LeetCode.DSA.Implementations
             }
         }
 
+        private void Heapify(int[] arr, int n, int i)
+        {
+            int l = 2 * i + 1;
+            int r = 2 * i + 2;
+
+            int max = i;
+
+            max = l < n && arr[l] > arr[max] ? l : max;
+            max = r < n && arr[r] > arr[max] ? r : max;
+
+            if ( max != i)
+            {
+                (arr[i], arr[max]) = (arr[max], arr[i]);
+                Heapify(arr, i, max);
+            }
+        }
         private int PartitionQuickSortArray(int[] a, int start, int end)
         {
             int pivot = a[end];
@@ -196,5 +225,6 @@ namespace DSA_LeetCode.DSA.Implementations
 
             return i;
         }
+
     }
 }

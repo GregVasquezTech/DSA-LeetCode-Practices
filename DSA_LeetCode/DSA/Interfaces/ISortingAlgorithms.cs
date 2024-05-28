@@ -8,5 +8,6 @@
         void MergeSortingAlgorithm(int[] arr);
         void ShellSortingAlgorithm(int[] arr);
         void QuickSortingAlgorithm(int[] arr, int start, int end);
+        void HeapSortingAlgorithm(int[] arr);
     }
 }
