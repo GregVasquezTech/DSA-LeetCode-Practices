@@ -18,80 +18,65 @@ namespace DSA_LeetCode
             int[] expectedResult = ExpectedResult();
 
             // Act
-            QuickSort(testArr, 0, testArr.Length - 1);
+            HeapSort(testArr);
 
             // Assert
-            
             IterateArrays(testArr, expectedResult);
-
-            Console.WriteLine("");
 
             Console.WriteLine($"Are the arrays equal? {CompareArrays(testArr, expectedResult)}");
         }
 
         private static int[] SetupArray()
         {
-            return new int[] { 5, -11, 24, 59, -42, -1, 8, 2, -97, 1, 3, 10, 4 };
+            return new int[] { 5, 1 - 4, 10, -26, 2, -97, 54, 21, -38, 99 };
         }
+
         private static int[] ExpectedResult()
         {
-            int[] result = SetupArray();
-            Array.Sort(result);
-            return result;
+            int[] expectedArr = SetupArray();
+            Array.Sort(expectedArr);
+            return expectedArr;
         }
-        private static void IterateArrays(int[] arr, int[] expectedArr)
+
+        private static void IterateArrays(int[] testArr, int[] expectedArr)
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < testArr.Length; i++)
             {
-                Console.WriteLine($"Test Array: {arr[i]}          Expected Array: {expectedArr[i]}");
+                Console.WriteLine($"Test array: {testArr[i]}                              Expected array: {expectedArr[i]}");
             }
+            Console.WriteLine("");
         }
-        private static bool CompareArrays(int[] arr, int[] expectedArr)
+
+        private static bool CompareArrays(int[] testArr, int[] expectedArr)
         {
             bool isEqual = false;
-            if (arr.Length != expectedArr.Length)
+            if (testArr.Length != expectedArr.Length)
             {
-                Console.WriteLine("Unable to compare arrays with different array sizes");
                 return isEqual;
             }
-            if (arr.Length == 0 || expectedArr.Length == 0)
+
+            for (int i = 0; i < testArr.Length; i++)
             {
-                Console.WriteLine("Empty Array(s)");
-                return isEqual;
-            }
-            for (int i = 0; i < arr.Length; i++) 
-            {
-                if (arr[i] == expectedArr[i])
+                if (testArr[i] != expectedArr[i])
                 {
-                    isEqual = true;
-                }
-                else
-                {
-                    isEqual = false;
+                    isEqual = false; 
                     break;
                 }
-                if (!isEqual)
-                {
-                    i = arr.Length - 1;
-                }
+                isEqual = true;
             }
             return isEqual;
         }
-        private static void PrintStatement()
-        {
-            Console.WriteLine("Array's size is less than 2, sorting is not needed");
-        }
+
         private static void SelectionSort(int[] arr)
         {
             if (arr.Length < 2)
             {
-                PrintStatement();
                 return;
             }
 
             for (int i = 0; i < arr.Length; i++)
             {
-                for (int j = i +1; j < arr.Length; j++)
+                for (int j = i; j < arr.Length; j++)
                 {
                     if (arr[j] < arr[i])
                     {
@@ -100,38 +85,40 @@ namespace DSA_LeetCode
                 }
             }
         }
+
         private static void InsertionSort(int[] arr)
         {
             if (arr.Length < 2)
             {
-                PrintStatement();
                 return;
             }
 
             for (int i = 0; i < arr.Length; i++)
             {
                 int j = i;
-                while (j > 0 && arr[j - 1] > arr[j])
+
+                while (j > 0 && arr[j] < arr[j - 1])
                 {
                     (arr[j], arr[j - 1]) = (arr[j - 1], arr[j]);
                     j--;
                 }
-            }
+            } 
         }
+
         private static void BubbleSort(int[] arr)
         {
-            if (arr.Length < 2)
-            {
-                PrintStatement();
+            if (arr.Length < 2) 
+            { 
                 return;
             }
 
             for (int i = 0; i < arr.Length; i++)
             {
+
                 bool isAnyChanges = false;
-                for (int j = 0; j < arr.Length - 1; j++)
+                for (int j = 0; j < arr.Length - 1; j++) 
                 {
-                    if (arr[j+1] < arr[j])
+                    if (arr[j + 1] < arr[j])
                     {
                         (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
                         isAnyChanges = true;
@@ -143,9 +130,10 @@ namespace DSA_LeetCode
                 }
             }
         }
+
         private static void MergeSort(int[] arr)
         {
-            if (arr.Length < 2) 
+            if (arr.Length < 2)
             {
                 return;
             }
@@ -170,65 +158,67 @@ namespace DSA_LeetCode
 
             MergeSort(leftArr);
             MergeSort(rightArr);
-            MergeArray(arr, leftArr, rightArr);
+            MergeArrays(arr, leftArr, rightArr);
         }
+
         private static void ShellSort(int[] arr)
         {
             if (arr.Length < 2)
             {
-                PrintStatement();
                 return;
             }
 
             for (int gap = arr.Length / 2; gap > 0; gap /= 2)
             {
-                for (int gapIndex = gap; gapIndex < arr.Length; gapIndex++)
+                for (int j = gap; j < arr.Length; j++)
                 {
-                    for (int startIndex = gapIndex - gap; startIndex >= 0; startIndex -= gap)
+                    for (int i = j - gap; i >= 0 ; i -= gap)
                     {
-                        if (arr[startIndex + gap] > arr[startIndex])
+                        if (arr[i + gap] < arr[i])
                         {
-                            break;
-                        }
-                        else
-                        {
-                            (arr[startIndex], arr[startIndex + gap]) = (arr[startIndex + gap], arr[startIndex]);
+                            (arr[i], arr[i + gap]) = (arr[i + gap], arr[i]);
                         }
                     }
                 }
             }
         }
+
         private static void QuickSort(int[] arr, int start, int end)
         {
-            if ( arr.Length < 2)
+            if (arr.Length < 2)
             {
                 return;
             }
 
-            if (end <= start)
+            if ( end <= start)
             {
                 return;
             }
 
             int pivot = PartitionQuickSort(arr, start, end);
-
             QuickSort(arr, start, pivot - 1);
             QuickSort(arr, pivot + 1, end);
         }
+        private static void HeapSort(int[] arr)
+        {
+            for (int i = arr.Length / 2 - 1; i >= 0; i--)
+            {
+                Heapify(arr, arr.Length, i);
+            }
+            for (int i = arr.Length - 1; i > 0; i--)
+            {
+                (arr[0], arr[i]) = (arr[i], arr[0]);
+                Heapify(arr, i, 0);
+            }
+        }
 
 
-
-
-
-
-
-
-        // Helper Functions
-        private static void MergeArray(int[] sortArr, int[] leftArr, int[] rightArr)
+        // Helper Functions 
+        private static void MergeArrays(int[] sortArr, int[] leftArr, int[] rightArr)
         {
             int l = 0, r = 0, s = 0;
 
-            while(l < leftArr.Length && r < rightArr.Length)
+            while (l < leftArr.Length && r < rightArr.Length) 
             {
                 if (leftArr[l] <= rightArr[r])
                 {
@@ -247,25 +237,44 @@ namespace DSA_LeetCode
 
             while (r < rightArr.Length)
             {
-                sortArr[s++] = rightArr[r++];   
+                sortArr[s++] = rightArr[r++];
             }
         }
-        private static int PartitionQuickSort(int[] partArr, int start, int end)
+
+        private static int PartitionQuickSort(int[] arr, int start, int end)
         {
-            int i = start - 1;
-            int pivot = partArr[end];
+            int i = start -1;
+            int pivot = arr[end];
 
             for (int j = start; j < end; j++)
             {
-                if (partArr[j] < pivot)
+                if (arr[j] < pivot)
                 {
-                    (partArr[++i], partArr[j]) = (partArr[j], partArr[i]);
+                    i++;
+                    (arr[i], arr[j]) = (arr[j], arr[i]);
                 }
             }
-
-            (partArr[++i], partArr[end]) = (partArr[end], partArr[i]);
+            i++;
+            (arr[i], arr[end]) = (arr[end], arr[i]);
 
             return i;
+        }
+
+        private static void Heapify(int[] arr, int n, int i)
+        {
+            int l = 2 * i + 1;
+            int r = 2 * i + 2;
+
+            int max = i;
+
+            max = l < n && arr[l] > arr[max] ? l : max;
+            max = r < n && arr[r] > arr[max] ? r : max;
+
+            if (max != i)
+            {
+                (arr[i], arr[max]) = (arr[max], arr[i]);
+                Heapify(arr, n, max);
+            }
         }
     }
 }
