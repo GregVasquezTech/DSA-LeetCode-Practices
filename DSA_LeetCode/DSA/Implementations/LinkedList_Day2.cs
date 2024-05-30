@@ -5,34 +5,38 @@ namespace DSA_LeetCode.DSA.Implementations
     public class LinkedList_Day2<T> : ILinkedList_Day2<T>
     {
         private int size = 0;
-        private LinkedListNode<T> head = null;
-        private LinkedListNode<T> tail = null;
+        private LinkedListNode<T> head;
+        private LinkedListNode<T>? tail;
 
-        public LinkedList_Day2() { }
-        public class LinkedListNode<T>
+        public LinkedList_Day2(LinkedListNode<T> _head, LinkedListNode<T> _tail) 
         {
-            public T? Data { get; set; }
-            public LinkedListNode<T> Prev { get; set; }
-            public LinkedListNode<T> Next { get; set; }
-            public LinkedListNode(T data, LinkedListNode<T> prev, LinkedListNode<T> next)
+            head = _head;
+            tail = _tail;
+        }
+        public class LinkedListNode<U>
+        {
+            public T Data { get; set; }
+            public LinkedListNode<T>? Prev { get; set; }
+            public LinkedListNode<T>? Next { get; set; }
+            public LinkedListNode(T data, LinkedListNode<T>? prev, LinkedListNode<T>? next)
             {
                 Data = data;
                 Prev = prev;
                 Next = next;
             }
-            public override string ToString()
+            public override string? ToString()
             {
-                return Data.ToString();
+                return Data?.ToString();
             }
         }
         public void Clear()
         {
-            LinkedListNode<T> trav = head;
+            LinkedListNode<T>? trav = head;
             while (trav != null)
             {
-                LinkedListNode<T> next = trav.Next;
+                LinkedListNode<T>? next = trav.Next;
                 trav.Prev = trav.Next = null;
-                trav.Data = default(T);
+                trav.Data = default;
                 trav = next;
             }
             head = tail = trav = null;
@@ -101,8 +105,11 @@ namespace DSA_LeetCode.DSA.Implementations
                 NewList(element);
             else
             {
-                tail.Next = new LinkedListNode<T>(element, tail, null);
-                tail = tail.Next;
+                if (tail != null)
+                {
+                    tail.Next = new LinkedListNode<T>(element, tail, null);
+                    tail = tail.Next;
+                }
             }
             size++;
         }
@@ -116,43 +123,55 @@ namespace DSA_LeetCode.DSA.Implementations
         {
             if (IsEmpty())
                 throw new Exception("Empty list");
-            return tail.Data;
+            if (tail != null)
+                return tail.Data;
+            return head.Data;
         }
         public T RemoveFirst()
         {
             if (IsEmpty())
                 throw new Exception("Empty list");
 
-            T tempData = head.Data;
-            head = head.Next;
-            --size;
+            T? tempData = head.Data;
+            if (head.Next != null)
+            {
+                head = head.Next;
+                --size;
 
-            if (IsEmpty())
-                tail = null;
-            else
                 head.Prev = null;
+            }
+            else
+            {
+                Clear();
+            }
 
             return tempData;
-
         }
         public T RemoveLast()
         {
             if (IsEmpty())
                 throw new Exception("Empty list");
 
-            T tempData = tail.Data;
-            tail = tail.Prev;
-            --size;
+            if (tail != null)
+            {
+                T tempData = tail.Data;
+                tail = tail.Prev;
+                --size;
 
-            if (tail.Prev == null)
-            {
-                head = tail;
-                tail = null;
-            } else
-            {
-                tail.Next = null;
+                if (tail != null && tail.Prev == null)
+                {
+                    head = tail;
+                    tail = null;
+                }
+                else
+                {
+                    if (tail != null)
+                        tail.Next = null;
+                }
+                return tempData;
             }
-            return tempData;
+
+            return head.Data;
         }
         public T Remove(LinkedListNode<T> node)
         {
@@ -161,17 +180,20 @@ namespace DSA_LeetCode.DSA.Implementations
             if (node.Next == null)
                 RemoveLast();
 
-            node.Next.Prev = node.Prev;
-            node.Prev.Next = node.Next;
+            if (node is not null)
+            {
+                node.Next.Prev = node.Prev;
+                node.Prev.Next = node.Next;
 
-            T tempData = node.Data;
+                T tempData = node.Data;
 
-            node.Data = default(T);
-            node = node.Next = node.Prev = null;
+                node.Data = default(T);
+                node = node.Next = node.Prev = null;
 
-            --size;
-
-            return tempData;
+                --size;
+                return tempData;
+            }
+            return node.Data = default;
         }
         public bool Remove(Object obj)
         {

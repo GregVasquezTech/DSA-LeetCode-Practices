@@ -10,9 +10,9 @@ namespace DSA_LeetCode.DSA.Implementations
 
         public PracticeDSA() { }
 
-        public class LinkedListNode<T> {
+        public class LinkedListNode<S> {
 
-            public T data = default(T);
+            public T data;
             public LinkedListNode<T> Prev { get; set; }
             public LinkedListNode<T> Next { get; set; }
 
@@ -71,7 +71,7 @@ namespace DSA_LeetCode.DSA.Implementations
             {
                 LinkedListNode<T> tempNext = trav.Next;
                 trav.Prev = null;
-                trav.data = default(T);
+                trav.data = default;
                 trav.Next = null;
             }
 

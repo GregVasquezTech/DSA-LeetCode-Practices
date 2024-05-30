@@ -2,20 +2,20 @@
 {
     public interface ILinkedList_Day2<T>
     {
-        public void Clear();
-        public int Size();
-        public int IndexOf(Object obj);
-        public bool Contains(object obj);
-        public bool IsEmpty();
-        public void NewList(T element);
-        public void Add(T element);
-        public void AddFirt(T element); 
-        public void AddLast(T element);
-        public T PeekFirst();
-        public T PeekLast();
-        public T RemoveFirst();
-        public T RemoveLast();
-        public bool Remove(Object obj);
-        public T RemoveAt(int index);
+        void Clear();
+        int Size();
+        int IndexOf(Object obj);
+        bool Contains(object obj);
+        bool IsEmpty();
+        void NewList(T element);
+        void Add(T element);
+        void AddFirt(T element); 
+        void AddLast(T element);
+        T PeekFirst();
+        T PeekLast();
+        T RemoveFirst();
+        T RemoveLast();
+        bool Remove(Object obj);
+        T RemoveAt(int index);
     }
 }
